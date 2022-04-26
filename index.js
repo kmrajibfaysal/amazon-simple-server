@@ -1,8 +1,20 @@
-const fib = (n) => {
-    if (n === 1) {
-        return [0, 1];
-    }
-    const arr = fib(n - 1);
-    arr.push(arr[arr.length - 1] + arr[arr.length - 2]);
-    return arr;
-};
+const express = require('express');
+const cors = require('cors');
+
+const app = express();
+const port = process.env.PORT || 5050;
+
+// middleware
+app.use(cors());
+app.use(express.json());
+
+// GET requests
+app.get('/', (req, res) => {
+    res.send('Amazon simple server is running in port 5050');
+});
+
+// Watch dog
+app.listen(port, (err) => {
+    if (err) throw err;
+    console.log('Server listening on port 5050.');
+});
